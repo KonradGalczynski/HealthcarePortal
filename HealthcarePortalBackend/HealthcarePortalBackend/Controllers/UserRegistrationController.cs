@@ -1,4 +1,5 @@
-﻿using HealthcarePortalBackend.Models;
+﻿using HealthcarePortalBackend.Model;
+using HealthcarePortalBackendApi.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthcarePortalBackend.Controllers

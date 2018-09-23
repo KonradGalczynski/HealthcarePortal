@@ -1,4 +1,4 @@
-﻿namespace HealthcarePortalBackend.Controllers
+﻿namespace HealthcarePortalBackendApi.DTO
 {
     public class UserRegistrationRequest
     {

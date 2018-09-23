@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace HealthcarePortalBackend.Models
+namespace HealthcarePortalBackend.Model
 {
     public class RegisteredUsersContext : DbContext
     {

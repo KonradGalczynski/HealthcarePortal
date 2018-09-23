@@ -1,4 +1,4 @@
-﻿namespace HealthcarePortalBackend.Models
+﻿namespace HealthcarePortalBackend.Model
 {
     public class RegisteredUserRecord
     {

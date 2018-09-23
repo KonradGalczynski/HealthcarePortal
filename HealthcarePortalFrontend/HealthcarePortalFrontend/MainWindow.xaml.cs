@@ -1,5 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
+using HealthcarePortalBackendApi.API;
+using HealthcarePortalBackendApi.DTO;
 using Refit;
 
 namespace HealthcarePortalFrontend
