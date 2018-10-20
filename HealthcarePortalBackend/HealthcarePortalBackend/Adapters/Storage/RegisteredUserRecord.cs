@@ -1,4 +1,4 @@
-﻿namespace HealthcarePortalBackend.Model
+﻿namespace HealthcarePortalBackend.Adapters.Storage
 {
     public class RegisteredUserRecord
     {

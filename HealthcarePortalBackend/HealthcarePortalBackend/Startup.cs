@@ -1,4 +1,4 @@
-﻿using HealthcarePortalBackend.Model;
+﻿using HealthcarePortalBackend.Adapters.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿using HealthcarePortalBackend.Model;
+﻿using HealthcarePortalBackend.Ports.Storage;
 using HealthcarePortalBackendApi.DTO;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,24 +8,19 @@ namespace HealthcarePortalBackend.Controllers
     [ApiController]
     public class UserRegistrationController : ControllerBase
     {
-        private readonly RegisteredUsersContext _context;
+        private readonly IRegisteredUsersStorage _registeredUsersStorage;
 
-        public UserRegistrationController(RegisteredUsersContext context)
+        public UserRegistrationController(IRegisteredUsersStorage registeredUsersStorage)
         {
-            _context = context;
+            _registeredUsersStorage = registeredUsersStorage;
         }
 
         [HttpPost]
         [Route("user")]
         public ActionResult Post([FromBody] UserRegistrationRequest userRegistrationRequest)
         {
-            var registeredUser = new RegisteredUserRecord
-            {
-                Login = userRegistrationRequest.Login,
-                Password = userRegistrationRequest.Password
-            };
-            _context.RegisteredUsers.Add(registeredUser);
-            _context.SaveChanges();
+            _registeredUsersStorage.AddUser(userRegistrationRequest.Login,
+                userRegistrationRequest.Password);
 
             return new OkResult();
         }
