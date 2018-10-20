@@ -13,7 +13,7 @@ namespace HealthcarePortalBackend
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<ProductionStartup>();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace HealthcarePortalBackend.Controllers
 
         [HttpPost]
         [Route("user")]
-        public ActionResult Post([FromBody] UserRegistrationRequest userRegistrationRequest)
+        public ActionResult AddUserToRegistered([FromBody] UserRegistrationRequest userRegistrationRequest)
         {
             _registeredUsersStorage.AddUser(userRegistrationRequest.Login,
                 userRegistrationRequest.Password);

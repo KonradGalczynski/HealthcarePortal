@@ -1,4 +1,5 @@
 ﻿using HealthcarePortalBackend.Adapters.Storage;
+using HealthcarePortalBackend.Ports.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +9,9 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace HealthcarePortalBackend
 {
-    public class Startup
+    public abstract class StartupBase
     {
-        public Startup(IConfiguration configuration)
+        protected StartupBase(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -23,13 +24,18 @@ namespace HealthcarePortalBackend
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //services.AddDbContext<RegisteredUsersContext>(options => options.UseInMemoryDatabase());
-            services.AddDbContext<RegisteredUsersContext>();
+            ConfigureStorage(services);
+
+            services.AddScoped<IRegisteredUsersStorage, RegisteredUsersStorage>();
+
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "HealthcarePortal API", Version = "v1" });
             });
         }
+
+        protected abstract void ConfigureStorage(IServiceCollection services);
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -48,12 +54,6 @@ namespace HealthcarePortalBackend
 
             app.UseHttpsRedirection();
             app.UseMvc();
-
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<RegisteredUsersContext>();
-                context.Database.EnsureCreated();
-            }
         }
     }
 }
